@@ -1,0 +1,33 @@
+ *{
+ 	margin: 0;
+ 	padding: 0;
+ }
+
+ .main-wrapper{
+ 	position: relative;
+ 	height:600px;
+  	width:1000px;
+  	overflow:hidden;
+ }
+
+.info{
+	background: lightgreen;
+	position: absolute;
+	top: 0;
+	left: 1000;
+}
+
+.startButton,.restart{
+ 	position: absolute;
+ 	top: 250px;
+ 	left: 400px;
+ 	width: 200px;
+ 	height: 100px;
+ 	background: green;
+ 	color: white;
+ 	font-size: 30px;
+ }
+
+canvas:hover{
+ 	cursor: crosshair;
+ }
