@@ -425,7 +425,6 @@ playerInBush = () => {
       this.gameWorld.guns = [];
       this.gameWorld.walls = [];
       this.gameWorld.items = [];
-      console.log(this.gameWorld);
       this.ctx.clearRect(0,0,canvas.width,canvas.height);
       this.restart.style.display = 'none';
       this.init();
