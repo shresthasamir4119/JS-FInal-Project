@@ -1,14 +1,13 @@
+//this is where game events occurs
 class StartGame {
   width;
   height;
   canvas;
   ctx;
   pointer = {
-    x: 0,
-    y: 0
-
+    x: Math.floor( Math.random() * (700+1)) - 700,//for player spawning random position of x
+    y: Math.floor( Math.random() * (700+1)) - 700//for player spawning random position of y
   };
-  
   constructor(gameWorld) {
     this.gameWorld = gameWorld;
   }
@@ -29,7 +28,6 @@ class StartGame {
     this.currentTime = time.getTime();
     this.zoneDelayTime = 100;
     this.lastTimeZoneMove = 0;
-    this.isPlayerReady = false;
     this.startBtn = document.createElement('button');
     this.startBtn.classList.add("startButton");
     this.restart = document.createElement('button');
@@ -412,18 +410,22 @@ playerInBush = () => {
   gameOver = () => {
     window.cancelAnimationFrame(this.animate);
     this.ctx.clearRect(0,0,canvas.width,canvas.height);
+    targetDiv.style.background = 'url(images/gameover.jpg)';
+    targetDiv.style.backgroundSize = 'cover';
+    this.ctx.fillStyle = 'white';
     this.ctx.fillText('You are '+(this.enemies.length+1) + ' in rank', screen.width / 2, screen.height / 2 - 20);
     this.ctx.fillText('Enemies Killed : '+(this.player.enemyKilled), screen.width / 2, screen.height / 2);
-    this.enemies = [];
-    this.trees = [];
-    this.items = [];
-    this.walls = [];
-    this.guns = [];
     targetDiv.appendChild(this.restart);
     this.restart.innerHTML = 'RESTART';
-    targetDiv.style.background = 'lightred';
     this.restart.addEventListener("click", () => {
+      targetDiv.style.background = 'none';
       this.gameOver.bind(this);
+      this.gameWorld.trees = [];
+      this.gameWorld.enemies = [];
+      this.gameWorld.guns = [];
+      this.gameWorld.walls = [];
+      this.gameWorld.items = [];
+      console.log(this.gameWorld);
       this.ctx.clearRect(0,0,canvas.width,canvas.height);
       this.restart.style.display = 'none';
       this.init();
@@ -434,11 +436,18 @@ playerInBush = () => {
   gameWin = () => {
     window.cancelAnimationFrame(this.animate);
     this.ctx.clearRect(0,0,canvas.width,canvas.height);
-    this.ctx.fillText('CONGRATS YOU ARE THE WINNER', 100, screen.height / 2);
+    targetDiv.style.background = 'url(images/victory.jpg)';
+    targetDiv.style.backgroundSize = 'cover';
     targetDiv.appendChild(this.restart);
     this.restart.innerHTML = 'RESTART';
-    targetDiv.style.background = 'lightblue';
     this.restart.addEventListener("click", () => {
+      targetDiv.style.background = 'none';
+      this.gameOver.bind(this);
+      this.gameWorld.trees = [];
+      this.gameWorld.enemies = [];
+      this.gameWorld.guns = [];
+      this.gameWorld.walls = [];
+      this.gameWorld.items = [];
       this.ctx.clearRect(0,0,canvas.width,canvas.height);
       this.restart.style.display = 'none';
       this.init();

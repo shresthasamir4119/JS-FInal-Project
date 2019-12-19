@@ -6,11 +6,15 @@ class CheckCollision{
 		if(this.distBetweenPoints(firstBody.xPosition - pointer.x , firstBody.yPosition - pointer.y , secondBody.xPosition, secondBody.yPosition) < PLAYER_SIZE/2){
 	 		return true;
 	 	}
+	 	else
+	 		return false;
 	}
 	 checkEnemyBulletCollide = (firstBody, secondBody)=>{
 	 	if(this.distBetweenPoints(firstBody.xPosition  , firstBody.yPosition  , secondBody.xPosition, secondBody.yPosition) < PLAYER_SIZE/2 ){
 	 		return true;
 	 	} 
+	 	else
+	 		return false;
 	}
 	isCollidingWithObject = (player, object, pointer)=>{
 		let distX = Math.abs(player.xPosition-pointer.x  - object.xPosition-object.width/2);

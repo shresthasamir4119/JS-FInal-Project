@@ -1,3 +1,4 @@
+//for creating objects and players 
 class GameWorld {
   getRan = new GetRandomNumber();
   enemies = [];
@@ -6,7 +7,7 @@ class GameWorld {
   items = [];
   walls = [];
   init = () => {
-    this.itemsNumber = 10;
+    this.itemsNumber = 5;
     this.enemiesNumber = 10;
     this.gunsNumber = 3;
     this.treesNumber = 3;
