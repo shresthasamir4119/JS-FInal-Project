@@ -51,9 +51,6 @@ class KeyPressedTracker {
       case 32:
         keyPress.keyStatus.fire = false;
         break;
-      case 70:
-        keyPress.keyStatus.pick = false;
-        break;
     }
   };
 }

@@ -21,7 +21,6 @@ class Player {
   pointer = {
     x: 0,
     y: 0
-
   };
   constructor(xPos, yPos) {
     this.xPosition = xPos;

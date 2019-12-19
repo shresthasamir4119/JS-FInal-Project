@@ -2,7 +2,6 @@ class EnemyGun extends Gun {
   constructor(xPosition, yPosition) {
     super(xPosition, yPosition);
   }
-
   init = () => {
     this.gun.src = 'images/enemygun.png';
   }
