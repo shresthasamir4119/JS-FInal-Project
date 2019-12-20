@@ -26,7 +26,8 @@ function Preloader() {
 			10: 'images/wall.png',
 			11: 'images/awm.png',
 			12: 'images/shotgun.png',
-			13: 'images/shooter.png'
+			13: 'images/shooter.png',
+			14: 'images/test.png'
 		}
 
 		that.loadImages(imageSource);
