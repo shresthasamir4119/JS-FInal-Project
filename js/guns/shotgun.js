@@ -1,4 +1,6 @@
 class ShotGun extends Gun {
+  width = 50;
+  height = 50;
   name = 'shotgun';
   fireInterval = 1000;
   damage = 10;

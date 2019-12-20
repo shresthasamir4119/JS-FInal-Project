@@ -91,7 +91,7 @@ class Enemy extends Player {
     this.gun.render(ctx, pointer);
     ctx.beginPath();
     ctx.strokeStyle = 'orange';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1;
     ctx.drawImage(this.playerImage, this.xPosition + pointer.x - 25, this.yPosition + pointer.y - 25, 50, 50);
     ctx.arc(this.xPosition+pointer.x,this.yPosition+pointer.y,this.gun.gunRange*BULLET_DISTANCE,0,2*Math.PI);
     ctx.stroke();

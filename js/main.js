@@ -114,6 +114,8 @@ class StartGame {
     this.checkEnemyPlayerBulletCollision();
     this.checkPlayerItemsCollision();
     this.checkPlayerGunCollision();
+    this.playerBulletToWall();
+    this.enemyBulletToWall();
   }
 
   isOutOfZone = () => {
@@ -174,7 +176,7 @@ class StartGame {
 
   renderGuns = () => {
     for (let i = 0; i < this.guns.length; i++) {
-      this.ctx.drawImage(this.guns[i].gun, this.guns[i].xPosition + this.pointer.x, this.guns[i].yPosition + this.pointer.y,50,50);
+      this.ctx.drawImage(this.guns[i].gun, this.guns[i].xPosition + this.pointer.x, this.guns[i].yPosition + this.pointer.y,this.guns[i].width,this.guns[i].height);
     }
   }
 
@@ -296,7 +298,7 @@ playerInBush = () => {
             if (this.enemies[k].health === 0) {
               this.enemies[k].bullets = [];
               this.enemies.splice(k, 1);
-              this.enemyNumber--; 
+              this.enemyNumber--;
             }
              break;
           }
@@ -309,9 +311,12 @@ playerInBush = () => {
     for (let i = 0; i < this.enemies.length; i++) {
       for (let j = 0; j < this.enemies[i].bullets.length; j++) {
         for (let k = 0; k < this.walls.length; k++) {
-          if (checkCollision.checkCollide(this.enemies[i].bullets[j], this.walls[k], this.pointer)) {
+          if (this.enemies[i].bullets[j].xPosition>this.walls[k].xPosition+this.pointer.x&&
+            this.enemies[i].bullets[j].xPosition<this.walls[k].xPosition+this.pointer.x+this.walls[k].width&&
+            this.enemies[i].bullets[j].yPosition>this.walls[k].yPosition+this.pointer.y&&
+            this.enemies[i].bullets[j].yPosition<this.walls[k].yPosition+this.pointer.y+this.walls[k].height) {
             this.enemies[i].bullets.splice(j,1);
-            console.log('collide');
+            break;
           }
         }
       }
@@ -322,8 +327,12 @@ playerInBush = () => {
   playerBulletToWall = () => {
     for (let i = 0; i < this.player.bullets.length; i++) {
       for (let j = 0; j < this.walls.length; j++) {
-        if (checkCollision.checkCollide(this.player.bullets[i], this.walls[j], this.pointer)) {
-          this.player.bullets.splice(i, 1);
+        if (this.player.bullets[i].xPosition>this.walls[j].xPosition+this.pointer.x&&
+            this.player.bullets[i].xPosition<this.walls[j].xPosition+this.pointer.x+this.walls[j].width&&
+            this.player.bullets[i].yPosition>this.walls[j].yPosition+this.pointer.y&&
+            this.player.bullets[i].yPosition<this.walls[j].yPosition+this.pointer.y+this.walls[j].height) {
+            this.player.bullets.splice(i, 1);
+            break;
         }
       }
     }
@@ -437,6 +446,9 @@ playerInBush = () => {
     this.ctx.clearRect(0,0,canvas.width,canvas.height);
     targetDiv.style.background = 'url(images/victory.jpg)';
     targetDiv.style.backgroundSize = 'cover';
+    this.ctx.fillStyle = 'white';
+    this.ctx.font = 'bold 40px Arial';
+    this.ctx.fillText('Enemies Killed : '+(this.player.enemyKilled), 200, screen.height / 2);
     targetDiv.appendChild(this.restart);
     this.restart.innerHTML = 'RESTART';
     this.restart.addEventListener("click", () => {

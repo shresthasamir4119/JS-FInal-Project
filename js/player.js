@@ -4,7 +4,6 @@ class Player {
   angle = 0;
   speed = 2;
   size = PLAYER_SIZE;
-  isAlive = true;
   lastShootTime = 0;
   normalGun = new Gun();
   gun = this.normalGun;
@@ -74,7 +73,7 @@ class Player {
     ctx.translate(this.xPosition, this.yPosition);
     ctx.rotate(this.angle);
     ctx.strokeStyle = 'green';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.translate(-this.xPosition, -this.yPosition);
     ctx.arc(this.xPosition,this.yPosition, this.gun.gunRange*BULLET_DISTANCE, 0, Math.PI*2 );
