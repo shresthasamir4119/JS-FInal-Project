@@ -1,8 +1,9 @@
 // loads all necessary images before hand, before starting game
+//this one in es5 >_<
 function Preloader() {
 
 	var view = targetDiv;	
-	var loadingPercentage = document.createElement('div');
+	var loadingPercentage = document.createElement('p');
 
 	var imageSources;
 	var soundSources;
@@ -54,7 +55,7 @@ function Preloader() {
 				loadedImages++;
 				percentage = Math.floor((loadedImages * 100) / totalImages);
 
-				loadingPercentage.innerHTML = percentage + '%'; //displaying percentage
+				loadingPercentage.innerHTML = 'LOADING : '+percentage + '%'; //displaying percentage
 
 				if(loadedImages >= totalImages) {
 					view.removeChild(loadingPercentage);

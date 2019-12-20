@@ -27,7 +27,13 @@
  	color: white;
  	font-size: 30px;
  }
-
+p{
+	font-size: 40px;
+	color: black;
+	position: absolute;
+	top: 0;
+	left: 100;
+}
 canvas:hover{
  	cursor: crosshair;
  }
